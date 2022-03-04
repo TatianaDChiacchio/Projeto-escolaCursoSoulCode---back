@@ -1,4 +1,8 @@
+
 package soulCode.escola.models;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,7 +39,9 @@ public class Aluno{
 	@JoinColumn(name = "id_turma")
 	private Turma turma;
 	
-	
+	//@JsonIgnore
+	//@OneToMany(mappedBy = "boleto")
+	//private List<Boleto> boleto = new ArrayList<>();
 
 	public Integer getRa_aluno() {
 		return ra_aluno;
@@ -74,13 +83,7 @@ public class Aluno{
 		this.turma = turma;
 	}
 
-//	public void setTurma(Integer id_turma) {
-//		
-//	}
-
-
-
 	
 
-	
+		
 }

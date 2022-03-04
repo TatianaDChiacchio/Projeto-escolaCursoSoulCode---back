@@ -34,6 +34,11 @@ public class ProfessorService {
 		return professor;
 	}
 	
+	public Professor buscarProfessorPeloNome(String pro_nome){
+		Professor professor = professorRepository.fetchByName(pro_nome);
+		return professor;
+	}
+	
 	public List<Professor> professorSemTurma(){
 		return professorRepository.professorSemTurma();
 	}
@@ -56,6 +61,12 @@ public class ProfessorService {
 	
 	public Professor editarProfessor(Professor professor) {
 		mostrarUmProfessor(professor.getId_professor());
+		return professorRepository.save(professor);
+	}
+	
+	public Professor salvarFoto(Integer id_professor, String caminhoFoto) {
+		Professor professor = mostrarUmProfessor(id_professor);
+		professor.setPro_foto(caminhoFoto);
 		return professorRepository.save(professor);
 	}
 	

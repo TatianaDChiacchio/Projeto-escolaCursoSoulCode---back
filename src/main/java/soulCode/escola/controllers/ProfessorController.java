@@ -45,6 +45,12 @@ public class ProfessorController {
 		Professor professor = professorService.buscarProfessorDaTurma(id_turma);
 		return ResponseEntity.ok().body(professor);
 	}
+	
+	@GetMapping("/professor-nome/{pro_nome}")
+	public ResponseEntity<Professor> buscarProfessorPeloNome(@PathVariable String pro_nome){
+		Professor professor = professorService.buscarProfessorPeloNome(pro_nome);
+		return ResponseEntity.ok().body(professor);
+	}
 	@GetMapping("/professorSemTurma")
 	public List<Professor> professorSemTurma(){
 		List<Professor> professor= professorService.professorSemTurma();
