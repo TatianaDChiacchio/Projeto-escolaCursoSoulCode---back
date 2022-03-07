@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,10 +63,22 @@ public class BoletoController {
 			return ResponseEntity.noContent().build();
 		}
 		
-		@PutMapping("/aluno/boleto/{codigo}")
-		public ResponseEntity<Boleto> editarBoleto(@PathVariable Integer codigo, @RequestBody Boleto boleto){
+		@PutMapping("/aluno/boleto/{codigo}/{ra_aluno}")
+		public ResponseEntity<Boleto> editarBoleto(@PathVariable Integer codigo,@PathVariable Integer ra_aluno, @RequestBody Boleto boleto){
 			boleto.setCodigo(codigo);
-			boleto = boletoService.editarBoleto(boleto);
+			boleto = boletoService.editarBoleto(boleto,ra_aluno);
+			return ResponseEntity.noContent().build();
+		}
+		
+		@PutMapping("aluno/quitarBoleto/{codigo}")
+		public ResponseEntity<Boleto> quitarBoleto(@PathVariable Integer codigo){
+			boletoService.quitarBoleto(codigo);
+			return ResponseEntity.noContent().build();
+		}
+		
+		@PutMapping("aluno/cancelarBoleto/{codigo}")
+		public ResponseEntity<Boleto> cancelarBoleto(@PathVariable Integer codigo){
+			boletoService.cancelarBoleto(codigo);
 			return ResponseEntity.noContent().build();
 		}
 

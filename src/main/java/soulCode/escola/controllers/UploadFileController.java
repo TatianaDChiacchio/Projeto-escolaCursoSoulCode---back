@@ -26,8 +26,9 @@ public class UploadFileController {
 		
 		String fileName = nome;
 		
-		String uploadDir = "/home/tatiana/Downloads/imagens";
-		String nomeMaisCaminho = "c:" + uploadDir + "/" + nome;
+		
+		String uploadDir = "http://robodegaragem.com.br/fotos/";
+		String nomeMaisCaminho =  uploadDir + "/" + nome;
 		
 		professorService.salvarFoto(id_professor, nomeMaisCaminho);
 		

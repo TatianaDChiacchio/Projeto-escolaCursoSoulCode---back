@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import soulCode.escola.models.Aluno;
 import soulCode.escola.models.Boleto;
+import soulCode.escola.models.StatusTitulo;
 import soulCode.escola.repositorys.BoletoRepository;
 
 @Service
@@ -48,8 +49,25 @@ public class BoletoService {
 			boletoRepository.deleteById(codigo);
 		}
 		
-		public Boleto editarBoleto(Boleto boleto) {
+		public Boleto editarBoleto(Boleto boleto, Integer ra_aluno) {
 			buscarUmBoleto(boleto.getCodigo());
+			Aluno aluno = alunoService.buscarUmAluno(ra_aluno);
+			boleto.setAluno(aluno);
+			return boletoRepository.save(boleto);
+		}
+		
+		
+		public Boleto quitarBoleto(Integer codigo) {
+			Boleto boleto = buscarUmBoleto(codigo);
+			StatusTitulo st1 = StatusTitulo.RECEBIDO;
+			boleto.setBo_status(st1);
+			return boletoRepository.save(boleto);
+		}
+		
+		public Boleto cancelarBoleto(Integer codigo) {
+			Boleto boleto = buscarUmBoleto(codigo);
+			StatusTitulo st1 = StatusTitulo.CANCELADO;
+			boleto.setBo_status(st1);
 			return boletoRepository.save(boleto);
 		}
 

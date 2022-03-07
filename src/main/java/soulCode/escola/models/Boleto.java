@@ -38,7 +38,7 @@ public class Boleto {
 	@Temporal(TemporalType.DATE) //sem salvar a hora, só o dia
 	private Date bo_dataVencimento;
 	
-	@NumberFormat(pattern = "#,##0.00")
+	@NumberFormat(pattern = "#.##0,00")
 	@Column(nullable = false)
 	private Double bo_valor;
 	
